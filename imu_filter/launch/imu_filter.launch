@@ -1,0 +1,3 @@
+<launch>
+    <node name="imu_filter_node" pkg="imu_filter" type="imu_filter_node" output="screen"/>
+</launch>
