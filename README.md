@@ -1,15 +1,17 @@
 ## imu_opti_localization 定位包使用说明
 ### 1. 安装
-`惯导系列模块使用手册`是IMU的使用文档，如果拿到的IMU没有进行校准请按照该文档中的内容进行初始化设置与校准
+`惯导系列模块使用手册`是IMU的使用文档，如果拿到的IMU没有进行校准请按照该文档中的内容，在Windows上位机中对加速度计、陀螺仪、磁力计进行校准，并找平。
 
-需要注意，在校准完毕之后，按照`4.上位机使用手册`第34页，修改MSG_IMU数据输出频率为400Hz，MSG_AHRS为200Hz
+在校准完毕之后，按照`4.上位机使用手册`第34页，修改MSG_IMU数据输出频率为400Hz，MSG_AHRS为200Hz
 
-将本文件夹中的三个package放到你的工作空间中，执行catkin_make
+完成上述步骤后，需要按照`WHEELTEC N系列用户手册`中第4部分“ROS SDK的移植使用”中更改CP2102芯片串口号
+
+最后，在ROS环境中将本文件夹中的三个package放到你的工作空间/src文件夹中，执行catkin_make编译
 
 ### 2. 配置
 
 #### fdilink_ahrs Package
-在使用该驱动包之前，sudo运行`/fdilink_ahrs/wheeltec_udev.sh`文件，更改imu端口号
+在使用该驱动包之前，sudo运行`/fdilink_ahrs/wheeltec_udev.sh`文件，更改imu连接端口
 
 在/fdilink_ahrs/launch/ahrs_data.launch中，确保：
 ```shell
@@ -24,12 +26,12 @@ uwb_sub_ = nh.subscribe("/vrpn_client_node/yourMavNodeName/pose", 200, &Localiza
 中修改为对应的话题
 
 ### 3. 使用
-#### 启动外置imu驱动：
+#### 启动外置imu ROS驱动：
 ```shell
 roslaunch fdilink_ahrs ahrs_data.launch
 ```
 
-#### 启动imu低通滤波：
+#### 启动imu低通滤波节点：
 ```shell
 roslaunch imu_filter imu_filter.launch
 ```
