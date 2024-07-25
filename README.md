@@ -4,7 +4,7 @@
 
 在校准完毕之后，按照`4.上位机使用手册`第34页，修改MSG_IMU数据输出频率为400Hz，MSG_AHRS为200Hz
 
-完成上述步骤后，需要按照`WHEELTEC N系列用户手册`中第4部分“ROS SDK的移植使用”中更改CP2102芯片串口号
+完成上述步骤后，需要按照`3.WHEELTEC N系列用户手册`中第4部分“ROS SDK的移植使用”中更改CP2102芯片串口号
 
 最后，在ROS环境中将本文件夹中的三个package放到你的工作空间/src文件夹中，执行catkin_make编译
 
@@ -44,7 +44,7 @@ roslaunch vrpn_client_ros sample.launch server:=192.168.31.67
 roslaunch imu_gps_localization imu_gps_localization.launch
 ```
 
-### 4. 说明
+### 4. 注意
 * 在上电时，需将飞机放置在飞场中的起飞点并保持静止，同时机头朝向应为正前方，否则姿态输出将会有固定偏差
 * 如果使用外置imu提供的欧拉角或者四元数，为了和optitrack处于同一坐标系中，读数时需要将yaw(欧拉角中)取负值 / w、x(四元数中)取负值
 [建议自行手飞测试，以确定是否需要取负值]
